@@ -25,8 +25,39 @@ company.save
 
 puts "There are #{Company.all.count} companies."
 
+values = {
+    name: "Amazon", 
+    url: "https://amazon.com", 
+    city: "Seattle", 
+    state: "WA" 
+}
+
+company = Company.new(values)
+company.save
+
+company = Company.new
+company.name = "Tesla"
+company.url = "https://tesla.com"
+company.city = "Austin"
+company.state = "TX"
+company.save
+
+puts "There are #{Company.all.count} companies."
+
 # 3. query companies table
+# puts Company.all.inspect
+
+
+# Filtering using a where clause
+apple = Company.where({
+    state: "CA",
+    name: "Apple"
+})[0]
+# puts apple.inspect
 
 # 4. read column values from row
+puts "#{apple.name} has a website located at: #{apple.url}."
 
 # 5. update attribute value
+apple.slogan = "Think Different."
+apple.save
